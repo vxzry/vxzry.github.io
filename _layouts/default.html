@@ -5,38 +5,55 @@
     {% seo title=false %}
     {% include meta.html %}
 
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/custom.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
     <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 
     <meta name="theme-color" content="#000000">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/favicon.ico">
+    
+    <style>
+      * {
+          /* border: solid 0.1px red; */
+      }
+    </style>
   </head>
 
   <body>
-    <div id="bar"></div>
-    <div class="wrapper-container">
+    <div class="container">
       <div class="wrapper-masthead">
         <div class="container">
           <header class="masthead clearfix">
-            <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.baseurl }}{{ site.avatar }}" alt="{{ site.title }}" /></a>
+            <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" alt="{{ site.name }}" /></a>
 
             <div class="site-info">
-              <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-              <p class="site-description">{{ site.description }}</p> 
+              <h1 class="site-name display-4">{{ site.name }}</h1>
+              <p class="site-description lite mb-0">{{ site.description }}</p>
             </div>
-
-            <nav>
-              <a href="{{ site.baseurl }}/">Home</a>
-              <a href="{{ site.baseurl }}/getting-started">Getting Started</a>
-              <a href="{{ site.baseurl }}/search">Search</a>
-              <a href="{{ site.baseurl }}/about">About</a>
-            </nav>
           </header>
+          
+          <nav class="bg-secondary">
+            <ul class="nav justify-content-center nav-fill">
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{{ site.baseurl }}/">Home</a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link text-white" href="{{ site.baseurl }}/getting-started">Getting Started</a>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{{ site.baseurl }}/search">Search</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{{ site.baseurl }}/about">About</a>
+              </li>
+          </nav>
+
         </div>
       </div>
-
-      <div class="wrapper-main">
+      
+      <div class="wrapper-main container">
         <div id="main" role="main" class="container">
           {{ content }}
         </div>
@@ -45,7 +62,9 @@
       <div class="wrapper-footer">
         <div class="container">
           <footer class="footer">
-            {% include svg-icons.html %}
+            <!-- <hr> -->
+            <!-- {% include footer.html %} -->
+            <!-- <p class="float-right text-muted"><small>Made in Manila</small></p> -->
           </footer>
         </div>
       </div>
