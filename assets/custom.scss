@@ -92,7 +92,7 @@ p > img {
 }
 
 #search-input {
-  width: 80%;
+  width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -102,7 +102,6 @@ p > img {
   font-size: 18px;
   background-color: #fafafa;
 }
-
   
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
