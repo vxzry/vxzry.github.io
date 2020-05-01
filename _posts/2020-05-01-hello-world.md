@@ -1,8 +1,13 @@
 ---
 layout: post
 title:  Hello world
-categories: [d365,test]
-# excerpt: In graphic design, a pull quote (also known as a lift-out pull quote) is a key phrase, quotation, or excerpt that has been pulled from an article and used as a page layout graphic element, serving to entice readers into the article or to highlight a key topic.
+categories: [test]
 ---
 
 My first post
+
+<div class="text-center">
+    <img src="{{ site.baseurl }}/images/octocat-gem.png" style="width: 400px;"/>
+    
+</div>
+

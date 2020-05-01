@@ -3,7 +3,8 @@ layout: default
 ---
 
 <div class="posts">
-  {% for post in paginator.posts %}
+  {% assign sorted = (paginator.posts | sort: 'date') | reverse %}
+  {% for post in sorted %}
     <article class="post  pb-15">
       <a class="text-dark" href="{{ site.baseurl }}{{ post.url }}">
         <h1 class="mb-0 pb-0 {%if post.title == ''%}{{site.untitled_class}}{% endif %}">{{ post.title | default: site.untitled}}</h1>
@@ -14,9 +15,7 @@ layout: default
         {{ post.excerpt }}
       </div>
 
-      {% unless post.excerpt == post.content %}
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more text-muted">Read More</a>
-      {% endunless %}
 
       <hr>
 

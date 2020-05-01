@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  Setting up TFS/Azure DevOps for Dynamics 365 F&O
-categories: [d365,azure devops, finops]
-exerp: In this tutorial, I will show you how to 
+categories: [d365,azure devops]
+published: false
 ---
 
 In this tutorial, I will show you how to set up your D365 dev environment to connect to your Azure DevOps project. I will use our current setup as an example.
