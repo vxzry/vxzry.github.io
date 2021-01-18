@@ -5,6 +5,9 @@ categories: [d365,azure devops]
 published: true
 ---
 
+In this tutorial, I will show you how to set up your D365 dev environment to connect to your Azure DevOps project. I will use our current setup as an example.
+
+
 ### Contents
 - [Prerequisites](#prerequisites)
 - [Setting up the source control](#setting-up-the-source-control)
@@ -13,8 +16,6 @@ published: true
   * [Visual Studio](#visual-studio)
   * [Workspaces](#workspaces)
 - [Adding items to your project...](#adding-items-to-your-project)
-
-In this tutorial, I will show you how to set up your D365 dev environment to connect to your Azure DevOps project. I will use our current setup as an example.
 
 ### Prerequisites
 1. User must atleast have a **Basic** access level on their Azure DevOps organization to access Azure Repos. See this [link](https://azure.microsoft.com/en-us/pricing/details/devops/azure-devops-services/) for the pricing.
