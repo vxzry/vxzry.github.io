@@ -78,12 +78,35 @@ Please note that you should use the old format of the url which is the `organiza
 
 Select the Team project and then click **Connect**.
 
+![connect-to-tfs](https://user-images.githubusercontent.com/20976789/104863576-5e1bf880-5971-11eb-8bcf-a6ceee65ffe6.PNG)
 
 #### Workspaces
 
 Now that we know how our structure should look like, we need to map the workspaces to link our local files to the source control. 
 
+Under Team Explorer, click on **Configure Workspace**. Then click on **Advanced..**
+
+![configure-worskpace](https://user-images.githubusercontent.com/20976789/104863686-ad622900-5971-11eb-9ede-cc23e60decd0.png)
+
+![image](https://user-images.githubusercontent.com/20976789/104864066-e8189100-5972-11eb-9401-a0f25d9e882f.png)
+
+We will now map our Model to our Project. By default, this is where the project would be mapped. 
+
+![image](https://user-images.githubusercontent.com/20976789/104864142-22822e00-5973-11eb-80a9-dcdf634fe8eb.png)
+
 Your `Project\Trunk\Branch\Metadata\` should be mapped to your local `PackagesLocalDirectory` path.
 
+![image](https://user-images.githubusercontent.com/20976789/104865062-e1d7e400-5975-11eb-8c07-46a4d89546d9.png)
 
-### To be continued...
+
+![image](https://user-images.githubusercontent.com/20976789/104864952-8c033c00-5975-11eb-8846-2e76eb60fe82.png)
+
+And then map your Projects on your preferred folder. 
+
+![image](https://user-images.githubusercontent.com/20976789/104865255-780c0a00-5976-11eb-99cf-cb14626a560b.png)
+
+Click on Ok. You will be asked if you want to get the latest files from version control. Click on Yes to get latest.
+
+![image](https://user-images.githubusercontent.com/20976789/104864654-96710600-5974-11eb-95bc-4a1706c46ba5.png)
+
+
