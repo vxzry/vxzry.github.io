@@ -5,6 +5,15 @@ categories: [d365,azure devops]
 published: true
 ---
 
+### Contents
+- [Prerequisites](#prerequisites)
+- [Setting up the source control](#setting-up-the-source-control)
+  * [.tfignore](#tfignore)
+  * [Tree structure](#tree-structure)
+  * [Visual Studio](#visual-studio)
+  * [Workspaces](#workspaces)
+- [Adding items to your project...](#adding-items-to-your-project)
+
 In this tutorial, I will show you how to set up your D365 dev environment to connect to your Azure DevOps project. I will use our current setup as an example.
 
 ### Prerequisites
@@ -109,4 +118,8 @@ Click on Ok. You will be asked if you want to get the latest files from version 
 
 ![image](https://user-images.githubusercontent.com/20976789/104864654-96710600-5974-11eb-95bc-4a1706c46ba5.png)
 
+
+### Adding items to your project...
+
+To be continued...
 
