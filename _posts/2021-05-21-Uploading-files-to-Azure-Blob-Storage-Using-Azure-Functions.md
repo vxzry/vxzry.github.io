@@ -30,7 +30,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Azure.Storage.Blob;
 using Microsoft.Extensions.Configuration;
 using Blobs.Logic;
-using Blobs.Entities;
 
 namespace Blobs.Functions
 {
@@ -46,15 +45,15 @@ namespace Blobs.Functions
             {
                 var formdata = await req.ReadFormAsync();
 
-                bool isFileMissing = (req.Form.Files.Count == 0 && req.Form.Files["file"] == null);	
-				string containerName = "my-container";
+                bool isFileMissing = (req.Form.Files.Count == 0 && req.Form.Files["file"] == null);
+                string containerName = "my-container";
 
-                if(isFileUrlMissing && isFileMissing)
+                if (isFileMissing)
                 {
                     return new BadRequestObjectResult("The following parameters are required: 'file'");
                 }
 
-
+                string filename = formdata["filename"];
                 IFormFile file = req.Form.Files["file"];
 
                 string connectionString = GetConnectionString(context);
@@ -63,16 +62,17 @@ namespace Blobs.Functions
                 blobStorage.Initialize();
 
                 CloudBlockBlob blob;
-                
+
                 blob = await blobStorage.CreateBlob(file, filename);
 
-                if(blob != null)
+                if (blob != null)
                 {
-					// Return url of created blob
+                    // Return url of created blob
                     string blobUrl = blob.Uri.ToString();
 
                     return new OkObjectResult(blobUrl);
-                } else
+                }
+                else
                 {
                     return new BadRequestObjectResult("Failed to create blob.");
                 }
@@ -88,10 +88,11 @@ namespace Blobs.Functions
             }
             catch (Exception ex)
             {
-                if(String.IsNullOrEmpty(ex.Message))
+                if (String.IsNullOrEmpty(ex.Message))
                 {
                     return new BadRequestObjectResult("UnsupportedMediaType. Content type must be form-data");
-                } else
+                }
+                else
                 {
                     return new UnprocessableEntityObjectResult(ex.Message);
                 }
@@ -109,6 +110,152 @@ namespace Blobs.Functions
         }
     }
 }
+```
 
+```C#
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Azure.Storage;
+using Microsoft.Azure.Storage.Blob;
+
+using System.Collections.Generic;
+using System.Net;
+
+namespace Blobs.Logic
+{
+    class BlobStorage
+    {
+        CloudStorageAccount StorageAccount { 
+            get {
+                if(!String.IsNullOrEmpty(ConnectionString)) {
+                    return CloudStorageAccount.Parse(ConnectionString);
+                }
+                else {
+                    return null;
+                }
+            }  
+        }
+        CloudBlobClient BlobClient
+        {
+            get
+            {
+                if (this.StorageAccount != null)
+                {
+                    return this.StorageAccount.CreateCloudBlobClient();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+        private string ConnectionString;
+        private string ContainerName;
+
+        public BlobStorage(string _connectionString, string _containerName)
+        {
+            if (String.IsNullOrEmpty(_connectionString))
+            {
+                throw new ArgumentNullException("_connectionString is required");
+            } 
+            else if (String.IsNullOrEmpty(_containerName))
+            {
+                throw new ArgumentNullException("_containerName is required");
+            }
+
+            this.ConnectionString = _connectionString;
+            this.ContainerName = _containerName;
+        }
+
+        public void Initialize()
+        {
+            if (this.StorageAccount == null)
+            {
+                throw new NullReferenceException("Error accessing Storage Account. Connection string might be invalid.");
+            }
+
+            this.CreateContainerIfNotExists();
+        }
+
+        CloudBlobContainer Container
+        {
+            get
+            {
+                CloudBlobContainer container = null;
+
+                if (this.BlobClient != null && !String.IsNullOrEmpty(this.ContainerName))
+                {
+                    container = this.BlobClient.GetContainerReference(this.ContainerName);
+                }
+
+                return container;
+            }
+        }
+
+        public async Task<CloudBlockBlob> CreateBlob(IFormFile _file, string _fileName)
+        {
+            CloudBlobContainer container = this.Container;
+            string fileName = _fileName;
+            if(container != null)
+            {
+                if (String.IsNullOrEmpty(Path.GetFileNameWithoutExtension(fileName)))
+                {
+                    if (String.IsNullOrEmpty(fileName))
+                    {
+                        fileName = "";
+                    }
+                    fileName += Guid.NewGuid().ToString();
+                }
+
+
+                string extension = Path.GetExtension(_file.FileName);
+                string blobName = $"{fileName}{extension}";
+
+                CloudBlockBlob blob = container.GetBlockBlobReference(blobName);
+
+                using (Stream stream = _file.OpenReadStream())
+                {
+                    try
+                    {
+                        blob.Properties.ContentType = _file.ContentType;
+                        await blob.UploadFromStreamAsync(stream).ConfigureAwait(false);
+                    } catch
+                    {
+                        throw new ArgumentNullException("Failed to upload file, ContentType is not defined.");
+                    }
+                }
+
+                return blob;
+            }
+
+            return null;
+        }
+
+        private void CreateContainerIfNotExists()
+        {
+            CloudStorageAccount storageAccount = this.StorageAccount;
+            if(storageAccount != null)
+            {
+                CloudBlobClient blobClient = this.BlobClient;
+                if(blobClient != null)
+                {
+                    CloudBlobContainer blobContainer = blobClient.GetContainerReference(this.ContainerName);
+                    blobContainer.CreateIfNotExistsAsync();
+
+                    // Create a permission policy to set the public access setting for the container. 
+                    BlobContainerPermissions containerPermissions = new BlobContainerPermissions();
+
+                    containerPermissions.PublicAccess = BlobContainerPublicAccessType.Blob;
+
+                    //Set the permission policy on the container.
+                    blobContainer.SetPermissions(containerPermissions);
+                }
+            }
+        }
+    }
+}
 ```
 
