@@ -6,7 +6,7 @@ categories: [azure blob storage, azure function]
 
 In this guide, we'll be using Azure Functions in C# to upload a file to Azure Blob Storage.
 
-### Prerequisites
+### Pre-requisites
 
 - Azure blob storage connection string 
 - Packages:
@@ -260,4 +260,9 @@ namespace Blobs.Logic
     }
 }
 ```
+
+### To call the function locally
+Open postman, add a new POST request to `http:\\localhost:7071\upload`.
+Add form-data.
+Send the request.
 
