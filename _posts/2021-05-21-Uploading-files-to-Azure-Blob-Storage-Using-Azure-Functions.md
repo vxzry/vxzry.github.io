@@ -112,6 +112,8 @@ namespace Blobs.Functions
 }
 ```
 
+BlobStorage.cs
+
 ```C#
 using System;
 using System.IO;
