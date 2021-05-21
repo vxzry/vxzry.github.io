@@ -262,7 +262,17 @@ namespace Blobs.Logic
 ```
 
 ### To call the function locally
-Open postman, add a new POST request to `http:\\localhost:7071\upload`.
-Add form-data.
-Send the request.
+
+1. Open postman, add a new POST request to `http://localhost:7071/api/upload`.
+2. Add form-data body. 
+3. To send a file from postman, hover on the Key column and select File on the dropdown, you should now see the "Select Files" button on the value column.
+
+    ![image](https://user-images.githubusercontent.com/20976789/119175349-49c14700-ba9c-11eb-9df9-bc34d33ffb1f.png)
+    
+4. You can add the filename field if you want to set the filename, this wil be automatically generated if left blank.
+5. Send the request.
+6. You will receive the link for the created blob if the request was successful.
+
+![image](https://user-images.githubusercontent.com/20976789/119175149-1088d700-ba9c-11eb-9610-2b0873583cd7.png)
+
 
