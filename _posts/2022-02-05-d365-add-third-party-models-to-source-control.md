@@ -5,6 +5,8 @@ categories: [d365,azure devops,third-party,tfvc]
 published: true
 ---
 
+Add third-party models to source control from deployable package.
+
 ### Contents
 - [Adding Third-party Deployable Package to Source Control](#adding-third-party-Deployable-Package-to-source-control)
 - [Updating Third-party Models to Source Control](#Updating-third-party-models-to-source-control)
