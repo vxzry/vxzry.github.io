@@ -2,7 +2,7 @@
 layout: post
 title:  Add third-party models to source control for Dynamics 365 F&O
 categories: [d365,azure devops,third-party,tfvc]
-published: false
+published: true
 ---
 
 Add third-party models to source control from deployable package.
