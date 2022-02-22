@@ -2,6 +2,7 @@
 layout: post
 title:  Hello world
 categories: [test]
+published: false
 ---
 
 My first post
