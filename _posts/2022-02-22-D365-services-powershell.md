@@ -4,14 +4,14 @@ title:  Start/Stop D365 services through PowerShell
 categories: [dynamics365, powershell, d365]
 ---
 
-## Use the following script to start/stop your D365 services.
-
-### To start:
+#### To start:
 `StartStopD365Services.ps1`
 
-### To Stop:
+#### To stop:
 `StartStopD365Services.ps1 -action stop`
 
+
+#### StartStopD365Services.ps1
 ```Powershell
 Param(
     [string]$action = "start"
